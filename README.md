@@ -2,6 +2,10 @@
 
 With the location manager we can get location updates using a Framer style API.
 
+## Example
+
+- [current distance and heading to NY](http://share.framerjs.com/hv9aj1uy1gfa/)
+
 ## Properties
 
 - **`enabled`** *\<bool>*
