@@ -22,8 +22,8 @@ locManager = new LocationManager
 
 ## Functions
 
-- **`distance(locationBCoordinates)`** returns <number> (meters)
-- **`heading(locationBCoordinates)`** returns <number> (degrees)
+- **`distance(locationBCoordinates)`** returns *\<number>* (meters)
+- **`heading(locationBCoordinates)`** returns *\<number>* (degrees)
 
 ```coffee
 
