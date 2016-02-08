@@ -16,6 +16,8 @@ With the location manager we can get location updates using a Framer style API.
 ```coffee
 # Include the LocationManager
 {LocationManager} = require "VRComponent"
+
+locManager = new LocationManager
 ```
 
 ## Functions
