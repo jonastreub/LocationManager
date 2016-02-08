@@ -22,12 +22,8 @@ locManager = new LocationManager
 
 ## Functions
 
-- **`distance(coordinates2)`** -> <number> (meters)
-- **`heading(coordinates2)`** -> <number> (degrees)
-
-## Events
-
-- **`Events.LocationChange`**, (*\<object>* {latitude, longitude})
+- **`distance(locationBCoordinates)`** -> <number> (meters)
+- **`heading(locationBCoordinates)`** -> <number> (degrees)
 
 ```coffee
 
@@ -35,9 +31,15 @@ NY =
 	latitude: 40.748817
 	longitude: -73.985428
 
+distanceToNY = locManager.distance(NY)
+```
+
+## Events
+
+- **`Events.LocationChange`**, (*\<object>* {latitude, longitude})
+
+```coffee
 locManager.onLocationChange (data) ->
 	latitude = data.latitude
 	longitude = data.longitude
-
-	distanceToNY = locManager.distance(NY)
 ```

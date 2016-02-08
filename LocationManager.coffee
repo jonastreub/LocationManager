@@ -6,8 +6,8 @@ LocationManager class
 - latitude 	<number> 	readonly
 - longitude <number> 	readonly
 
-- distance(bCoordinates) -> <number>
-- heading(bCoordinates) -> 	<number>
+- distance(locationBCoordinates) -> <number>
+- heading(locationBCoordinates) -> 	<number>
 
 events
 - onLocationChange (data {latitude, longitude})
@@ -62,7 +62,7 @@ class exports.LocationManager extends Framer.BaseClass
 		d = R * c
 		return d
 
-	heading: (bCoordinates) ->
+	heading: (bCoordinates, bCoordinates2) ->
 		lat2 = bCoordinates.latitude
 		lon2 = bCoordinates.longitude
 		if _.isNumber(bCoordinates) and _.isNumber(bCoordinates2)
