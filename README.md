@@ -37,7 +37,7 @@ headingToNY = locManager.heading(NY)
 
 ## Events
 
-- **`Events.LocationChange`**, (*\<object>* {latitude, longitude})
+- **`Events.onLocationChange`**, (*\<object>* {latitude, longitude})
 
 ```coffee
 locManager.onLocationChange (data) ->
