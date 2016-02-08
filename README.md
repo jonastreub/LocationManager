@@ -22,8 +22,8 @@ locManager = new LocationManager
 
 ## Functions
 
-- **`distance(locationBCoordinates)`** -> <number> (meters)
-- **`heading(locationBCoordinates)`** -> <number> (degrees)
+- **`distance(locationBCoordinates)`** returns <number> (meters)
+- **`heading(locationBCoordinates)`** returns <number> (degrees)
 
 ```coffee
 
@@ -32,6 +32,7 @@ NY =
 	longitude: -73.985428
 
 distanceToNY = locManager.distance(NY)
+headingToNY = locManager.heading(NY)
 ```
 
 ## Events
