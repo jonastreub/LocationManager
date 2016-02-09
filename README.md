@@ -1,6 +1,6 @@
 # LocationManager
 
-With the location manager we can get location updates using a Framer style API.
+With the location manager we can get location updates using a [Framer](http://framerjs.com) style API.
 
 ## Example
 
