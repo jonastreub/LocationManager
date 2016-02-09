@@ -39,8 +39,8 @@ headingToNY = locManager.heading(NY)
 
 ## Events
 
-- **`onLocationChange`** (data {latitude, longitude})
-- **`onLocationError`**  (message <string>)
+- **`onLocationChange`** (data *\{latitude, longitude}*)
+- **`onLocationError`**  (message *\<string>*)
 
 ```coffee
 locManager.onLocationChange (data) ->
