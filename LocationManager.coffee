@@ -1,19 +1,24 @@
 """
 LocationManager class
 
-- enabled 	<bool>
-- available <bool> 		readonly
-- latitude 	<number> 	readonly
-- longitude <number> 	readonly
+- enabled 	   <bool>
+- latitude 	   <number> readonly
+- longitude    <number> readonly
+- errorMessage <string or null> readonly
 
-- distance(locationBCoordinates) -> <number>
-- heading(locationBCoordinates) -> 	<number>
+- distance(locationBCoordinates) returns <number> (meters)
+- heading(locationBCoordinates)  returns <number> (degrees)
+
+class methods
+- available() returns <bool>
 
 events
 - onLocationChange (data {latitude, longitude})
+- onLocationError  (message <string>)
 """
 
 Events.LocationChange = "geolocationchange"
+Events.LocationError = "geolocationerror"
 
 class exports.LocationManager extends Framer.BaseClass
 	
@@ -25,25 +30,19 @@ class exports.LocationManager extends Framer.BaseClass
 		get: -> return @_activeWatchId?
 		set: (setActive) ->
 			if setActive
-				@_activeWatchId = navigator.geolocation.watchPosition(@_updatePosition) if @available and not @enabled
+				@_activeWatchId = navigator.geolocation.watchPosition(@_updatePosition, @_positionError) if LocationManager.available() and not @enabled
 			else
 				navigator.geolocation.clearWatch(@_activeWatchId) if @enabled
 				@_activeWatchId = null
-	
-	_updatePosition: (location) =>
-		@_latitude = location.coords.latitude
-		@_longtitude = location.coords.longitude
-		coords = {latitude: @_latitude, longitude: @_longtitude}
-		@emit(Events.LocationChange, coords)
-	
-	@define "available",
-		get: -> "geolocation" in _.keys(navigator)
 	
 	@define "latitude",
 		get: -> @_latitude
 	
 	@define "longitude",
 		get: -> @_longtitude
+
+	@define "errorMessage",
+		get: -> @_errorMessage
 
 	distance: (bCoordinates...) ->
 		{lat2, lon2} = @_normalizeCoordinates(bCoordinates)
@@ -70,6 +69,17 @@ class exports.LocationManager extends Framer.BaseClass
 		heading += 360 if heading < 0
 		return heading
 
+	_updatePosition: (location) =>
+		@_errorMessage = null
+		@_latitude = location.coords.latitude
+		@_longtitude = location.coords.longitude
+		coords = {latitude: @_latitude, longitude: @_longtitude}
+		@emit(Events.LocationChange, coords)
+	
+	_positionError: (error) =>
+		@_errorMessage = error.message
+		@emit(Events.LocationError, error.message)
+
 	_normalizeCoordinates: (input) ->
 		coord = {}
 		for item in input
@@ -86,6 +96,11 @@ class exports.LocationManager extends Framer.BaseClass
 	toInspect: =>
 		"<#{@constructor.name} lat:#{@latitude} lon:#{@longitude}>"
 
+	# class methods
+
+	@available: -> "geolocation" in _.keys(navigator)
+
 	# event shortcuts
 
 	onLocationChange:(cb) -> @on(Events.LocationChange, cb)
+	onLocationError:(cb)  -> @on(Events.LocationError, cb)
