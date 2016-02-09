@@ -9,9 +9,9 @@ With the location manager we can get location updates using a Framer style API.
 ## Properties
 
 - **`enabled`** *\<bool>*
-- **`available`** *\<bool>*
-- **`latitude`** *\<number>* (90 to -90 degrees)
-- **`longitude`** *\<number>* (180 to -180 degrees)
+- **`latitude`** *\<number>* (90 to -90 degrees) readonly
+- **`longitude`** *\<number>* (180 to -180 degrees) readonly
+- **`errorMessage`** *\<string or null>* readonly
 
 ```coffee
 # Include the LocationManager
@@ -21,6 +21,8 @@ locManager = new LocationManager
 ```
 
 ## Functions
+
+- LocationManager.**`available()`** returns *\<bool>*
 
 - **`distance(locationBCoordinates)`** returns *\<number>* (meters)
 - **`heading(locationBCoordinates)`** returns *\<number>* (degrees)
@@ -37,10 +39,14 @@ headingToNY = locManager.heading(NY)
 
 ## Events
 
-- **`Events.onLocationChange`**, (*\<object>* {latitude, longitude})
+- **`onLocationChange`** (data {latitude, longitude})
+- **`onLocationError`**  (message <string>)
 
 ```coffee
 locManager.onLocationChange (data) ->
 	latitude = data.latitude
 	longitude = data.longitude
+
+locManager.onLocationError (message) ->
+	print message
 ```
