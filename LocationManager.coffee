@@ -45,12 +45,8 @@ class exports.LocationManager extends Framer.BaseClass
 	@define "longitude",
 		get: -> @_longtitude
 
-	distance: (bCoordinates, bCoordinates2) ->
-		lat2 = bCoordinates.latitude
-		lon2 = bCoordinates.longitude
-		if _.isNumber(bCoordinates) and _.isNumber(bCoordinates2)
-			lat2 = bCoordinates
-			lon2 = bCoordinates2
+	distance: (bCoordinates...) ->
+		{lat2, lon2} = @_normalizeCoordinates(bCoordinates)
 		return false unless @latitude? and @longitude? and lat2? and lon2?
 		R = 6371000 # metres
 		φ1 = @latitude * @degToRad
@@ -62,12 +58,8 @@ class exports.LocationManager extends Framer.BaseClass
 		d = R * c
 		return d
 
-	heading: (bCoordinates, bCoordinates2) ->
-		lat2 = bCoordinates.latitude
-		lon2 = bCoordinates.longitude
-		if _.isNumber(bCoordinates) and _.isNumber(bCoordinates2)
-			lat2 = bCoordinates
-			lon2 = bCoordinates2
+	heading: (bCoordinates...) ->
+		{lat2, lon2} = @_normalizeCoordinates(bCoordinates)
 		return false unless @latitude? and @longitude? and lat2? and lon2?
 		lat1 = @latitude * @degToRad
 		lat2 = lat2 * @degToRad
@@ -77,6 +69,19 @@ class exports.LocationManager extends Framer.BaseClass
 		heading = angle * 180 / Math.PI
 		heading += 360 if heading < 0
 		return heading
+
+	_normalizeCoordinates: (input) ->
+		coord = {}
+		for item in input
+			if item.latitude? and item.longitude?
+				coord.lat2 = item.latitude if _.isNumber(item.latitude)
+				coord.lon2 = item.longitude if _.isNumber(item.longitude)
+			if _.isNumber(item)
+				if not coord.lat2?
+					coord.lat2 = item
+				else if not coord.lon2?
+					coord.lon2 = item
+		return coord
 
 	toInspect: =>
 		"<#{@constructor.name} lat:#{@latitude} lon:#{@longitude}>"
