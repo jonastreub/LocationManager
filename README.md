@@ -22,9 +22,7 @@ locManager = new LocationManager
 
 ## Functions
 
-Let you know if the current device supports location data.
-- LocationManager.**`available()`** returns *\<bool>*
-
+- LocationManager.**`available()`** returns *\<bool>* (whether current device supports location data)
 - **`distance(locationBCoordinates)`** returns *\<number>* (meters)
 - **`heading(locationBCoordinates)`** returns *\<number>* (degrees)
 
