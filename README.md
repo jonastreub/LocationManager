@@ -1,6 +1,6 @@
 # LocationManager
 
-With the location manager we can get location updates using a [Framer](http://framerjs.com) style API.
+Useful location data for [Framer](http://framerjs.com) prototypes. Find out where the user is located and get distance and heading to other locations.
 
 ## Example
 
@@ -9,8 +9,8 @@ With the location manager we can get location updates using a [Framer](http://fr
 ## Properties
 
 - **`enabled`** *\<bool>*
-- **`latitude`** *\<number>* (90 to -90 degrees) readonly
-- **`longitude`** *\<number>* (180 to -180 degrees) readonly
+- **`latitude`** *\<number>* readonly (90 to -90 degrees)
+- **`longitude`** *\<number>* readonly (180 to -180 degrees)
 - **`errorMessage`** *\<string or null>* readonly
 
 ```coffee
@@ -22,6 +22,7 @@ locManager = new LocationManager
 
 ## Functions
 
+Let you know if the current device supports location data.
 - LocationManager.**`available()`** returns *\<bool>*
 
 - **`distance(locationBCoordinates)`** returns *\<number>* (meters)
