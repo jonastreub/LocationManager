@@ -6,8 +6,8 @@ LocationManager class
 - longitude    <number> readonly
 - errorMessage <string or null> readonly
 
-- distance(locationBCoordinates) returns <number> (meters)
-- heading(locationBCoordinates)  returns <number> (degrees)
+- distanceTo(destinationCoordinates) returns <number> (meters)
+- headingTo(destinationCoordinates)  returns <number> (degrees)
 
 class methods
 - available() returns <bool>
@@ -44,7 +44,7 @@ class exports.LocationManager extends Framer.BaseClass
 	@define "errorMessage",
 		get: -> @_errorMessage
 
-	distance: (bCoordinates...) ->
+	distanceTo: (bCoordinates...) ->
 		{lat2, lon2} = @_normalizeCoordinates(bCoordinates)
 		return false unless @latitude? and @longitude? and lat2? and lon2?
 		R = 6371000 # metres
@@ -57,7 +57,7 @@ class exports.LocationManager extends Framer.BaseClass
 		d = R * c
 		return d
 
-	heading: (bCoordinates...) ->
+	headingTo: (bCoordinates...) ->
 		{lat2, lon2} = @_normalizeCoordinates(bCoordinates)
 		return false unless @latitude? and @longitude? and lat2? and lon2?
 		lat1 = @latitude * @degToRad

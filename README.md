@@ -23,8 +23,8 @@ locManager = new LocationManager
 ## Functions
 
 - LocationManager.**`available()`** returns *\<bool>* (whether current device supports location data)
-- **`distance(locationBCoordinates)`** returns *\<number>* (meters)
-- **`heading(locationBCoordinates)`** returns *\<number>* (degrees)
+- **`distanceTo(destinationCoordinates)`** returns *\<number>* (meters)
+- **`headingTo(destinationCoordinates)`** returns *\<number>* (degrees)
 
 ```coffee
 
@@ -32,8 +32,8 @@ NY =
 	latitude: 40.748817
 	longitude: -73.985428
 
-distanceToNY = locManager.distance(NY)
-headingToNY = locManager.heading(NY)
+distanceToNY = locManager.distanceTo(NY)
+headingToNY = locManager.headingTo(NY)
 ```
 
 ## Events
