@@ -2,6 +2,8 @@
 
 Useful location data for [Framer](http://framerjs.com) prototypes. Find out where the user is located and get distance and heading to other locations.
 
+Note: Location data is not available in Framer Studio so use a browser window for testing.
+
 ## Example
 
 - [current distance and heading to NY](http://share.framerjs.com/hv9aj1uy1gfa/)
